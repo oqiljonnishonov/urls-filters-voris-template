@@ -1,0 +1,10 @@
+{%load news_tags%}
+{%get_ctegory as categories%}
+<div class="list-group">
+    {% for item in categories %}
+    <a href="{% url 'category' item.id %}" 
+    class="list-group-item list-group-item-action justify-content-between d-flex align-items-start">{{item.category}}
+    <span class="badge bg-primary rounded-pill">{{item.counts}}</span>
+    </a>
+    {% endfor %}
+</div>

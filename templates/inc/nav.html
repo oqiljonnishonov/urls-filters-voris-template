@@ -1,0 +1,80 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">
+</script>
+
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" rel="stylesheet"
+type="text/css" />
+
+
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{%url 'home'%}">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse position-relative d-flex justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{%url 'home'%}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{%url 'add_news'%}">Add News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{%url 'add_category'%}">Add Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'delete'%}">Delete News</a>
+          </li>
+          
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a> -->
+          </li>
+        </ul>
+        <form 
+         action="{% url 'get_search' %}">
+          <input class="form-control me-2" type="search"  placeholder="Search" aria-label="Search" name="search" id="tags">
+          <script>
+            $(function () {
+                var availableTags = [
+                {%for item in news%}
+                "{{item.title}}",
+                "{{item.content}}",
+                {% endfor %}
+                ];
+                $("#tag").autocomplete({
+                    source: availableTags,
+                });
+            } );
+
+            $(function(){
+              var availableTags = [
+              {%for item in categories%}
+              "{{item.title}}",
+              {%endfor%}
+              ];
+              $("#tags").autocomplete({
+                source:availableTags,
+              });
+            });
+    </script>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  
+
+  
+
+

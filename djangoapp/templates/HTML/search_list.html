@@ -1,0 +1,36 @@
+
+{%extends 'base.html'%}
+
+{%block sidebar%}
+
+{%include 'inc/sidebar.html'%}
+
+{%endblock%}
+
+{%block content%} 
+ 
+{% for item in searchs %}
+<div class="card mb-3">
+    <div class="media">
+        <h5 class="card-header text-center">{{item.category}}</h5>
+        <div class="card-body row">
+            <h5 class="card-title text-center">{{item.title}}</h5>
+            <div class="row">
+                {% if item.photos %}
+                <img src="{{item.photos.url}}" alt="photo_one" width="350px">
+                {% else %}
+                <img src="https://api.lorem.space/image?w=150&h=180" 
+                alt="photo_two" width="350px">
+                {% endif %}
+                <p class="card-text">{{item.content | linebreaks | truncatewords:20 | safe}}</p>
+            </div>
+            <div class="card-footer" style="text-align:right;">
+                {{item.created_at | date:"Y-m-d H:i:s"}}
+            </div>
+            <a href="{% url 'get_one' item.id %}" class="btn btn-primary">Go To Page</a>
+        </div>
+    </div>
+</div>       
+{% endfor %}
+
+{%endblock%}

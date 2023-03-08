@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{%block content %}
+<div class="card mb-3">
+    {% if item.photos %}
+    <img src="{{item.photos.url}}" alt="photo_one">
+    {% else %}
+    <img src="https://newsroom.kz/wp-content/uploads/2021/01/PYE3YrNIHyIbefaGSECtg2aYK4sEC8Vb_low.jpg"
+         alt="" >
+    {% endif%}
+    <div class="card-body">
+        <h5 class="card-title">{{item.title}}</h5>
+        <p class="card-text">{{item.content}}</p>
+        <p class="card-text">{{item.created_at |date:"Y-m-d H:i:s"}}</p>
+
+    </div>
+</div>
+
+
+{% endblock%}
+
+
+{%block sidebar %}
+{% include 'inc/sidebar.html'%}
+
+{% endblock%}

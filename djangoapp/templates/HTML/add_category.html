@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+
+{%block sidebar%}
+
+{%include 'inc/sidebar.html'%}
+
+{%endblock%}
+
+{%block content%} 
+ 
+<h1 class="text-center">Add Category</h1>
+<form action="{%url 'add_category'%}" method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <div class="row mb-3">
+        <button type="submit" class="btn btn-primary btn-block">Create News</button>
+    </div>
+    
+    <div class="row">
+        <a href="{%url 'home'%}" class="btn btn-primary">Go To Home</a>
+    </div>
+</form>
+
+
+{%endblock%}
